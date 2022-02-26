@@ -1,42 +1,14 @@
+### To Run a nodejs http-Server
+
+# On bash
 ```
-import fs from 'fs';
-import http from 'http';
-import { stdout,stdin,exit } from 'process';
+    //Importante de setar variaveis de ambiente,se não PORT=8080
+    PORT=ENV_PORT_VALUE node index.mjs
 
-const getTxtValue= () => fs.readFileSync('database.txt',{encoding:'base64'})
-const txt= getTxtValue().toString()
- 
-if(txt == ''){
-    console.log("Erro ao carregar o mega database :(")
-    exit()
-} 
-
-const setTxtValue = (value) => fs.writeFileSync('database.txt',value,(err)=>{
-    console.log('Erro ao escrever no mega database :(')
-    exit()
-})
-
-let counter = 0;
-
-const server = http.createServer(
-    (req,res)=>{
-            console.log(`Counter: ${counter.toString()}`) 
-
-            ++counter;//cound be a async action
-            setTxtValue(counter.toString())
-        
-            res.writeHead(200,{'Content-Type': 'text/plain'})
-            res.write(`Counter Atual: ${counter}`)
-            return res.end()
-        }
-        
-    )
-
-const PORT = process.env.PORT || 8080
-server.listen(PORT) //http:localhost:8080/ -> file system () => read write .txt 
-console.log(`Servidor Iniciado na porta ${PORT}`)
-//server.on('exit',() => {
-//    console.log('Limpando arquivo...')
-//    setTxtValue('0')
-//})
+```
+# On windows
+```
+    //Importante de setar variaveis de ambiente, se não PORT = 8080
+    $env:PORT 8080
+    node .\index.mjs //env "PORT" setada anteriormente!!
 ```
