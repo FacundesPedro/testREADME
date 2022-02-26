@@ -16,6 +16,6 @@
     $env:PORT 8080
     node .\index.mjs //env "PORT" setada anteriormente!!
 ```
-### Finnaly open tour browser or http-resquester tool and go to "<p>http://127.0.0.1:PORT_ENV_VALUE</p>" and see the value update after each GET the server receives
+### Finnaly open tour browser or http-resquester tool and go to "<p>http://127.0.0.1:PORT_ENV_VALUE</p>" and see the value update in "database.txt" after each GET request the server receives
 
 <img src="print.png"></img>
