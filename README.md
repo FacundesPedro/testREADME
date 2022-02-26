@@ -18,4 +18,4 @@
 ```
 ### Finnaly open tour browser or http-resquester tool and go to "http:127.0.0.1:PORT_ENV_VALUE" and see the value update after each GET the server receives
 
-<img src="print.png width=700 height=400"></img>
+<img src="print.png"></img>
