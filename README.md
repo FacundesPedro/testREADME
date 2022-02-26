@@ -1,18 +1,42 @@
-```bash
-# Clone este repositório
-$ git clone <https://github.com/tgmarinho/nlw1>
+```
+import fs from 'fs';
+import http from 'http';
+import { stdout,stdin,exit } from 'process';
 
-# Acesse a pasta do projeto no terminal/cmd
-$ cd nlw1
+const getTxtValue= () => fs.readFileSync('database.txt',{encoding:'base64'})
+const txt= getTxtValue().toString()
+ 
+if(txt == ''){
+    console.log("Erro ao carregar o mega database :(")
+    exit()
+} 
 
-# Vá para a pasta server
-$ cd server
+const setTxtValue = (value) => fs.writeFileSync('database.txt',value,(err)=>{
+    console.log('Erro ao escrever no mega database :(')
+    exit()
+})
 
-# Instale as dependências
-$ npm install
+let counter = 0;
 
-# Execute a aplicação em modo de desenvolvimento
-$ npm run dev:server
+const server = http.createServer(
+    (req,res)=>{
+            console.log(`Counter: ${counter.toString()}`) 
 
-# O servidor inciará na porta:3333 - acesse <http://localhost:3333>
+            ++counter;//cound be a async action
+            setTxtValue(counter.toString())
+        
+            res.writeHead(200,{'Content-Type': 'text/plain'})
+            res.write(`Counter Atual: ${counter}`)
+            return res.end()
+        }
+        
+    )
+
+const PORT = process.env.PORT || 8080
+server.listen(PORT) //http:localhost:8080/ -> file system () => read write .txt 
+console.log(`Servidor Iniciado na porta ${PORT}`)
+//server.on('exit',() => {
+//    console.log('Limpando arquivo...')
+//    setTxtValue('0')
+//})
 ```
