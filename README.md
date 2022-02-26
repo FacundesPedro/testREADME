@@ -1,3 +1,7 @@
+# First clone this project
+```
+    git clone https://github.com/FacundesPedro/testREADME.git
+```
 # To Run a nodejs http-Server
 
 ## On bash
