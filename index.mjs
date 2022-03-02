@@ -21,7 +21,7 @@ const server = http.createServer(
     (req,res)=>{
             ++counter;//cound be a async action
             setTxtValue(counter.toString())
-        
+            console.log(req.toString())
             res.writeHead(200,{'Content-Type': 'text/plain'})
             res.write(`Counter Atual: ${counter}`)
             return res.end()
